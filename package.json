@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "browserify": "browserify src/app.js -o dist/koa-service.js",
-    "webpack": "webpack --config webpack.config.js"
+    "browserify": "browserify src/app.js -o dist/koa-service.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +19,6 @@
   "homepage": "https://github.com/kanatapple/koa-service#readme",
   "dependencies": {
     "browserify": "^13.1.1",
-    "koa": "^1.2.4",
-    "webpack": "^1.13.3"
+    "koa": "^1.2.4"
   }
 }
