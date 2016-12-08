@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "browserify": "browserify src/app.js -o dist/koa-service.js"
+    "build": "browserify src/server.js -o docs/sw.js"
   },
   "repository": {
     "type": "git",
