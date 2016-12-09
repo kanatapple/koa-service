@@ -1,5 +1,7 @@
 'use strict';
 
+const http = require('http');
+
 function setupServiceWorkerServer(app, cacheName, cacheResources) {
     /**
      *
@@ -30,7 +32,31 @@ function setupServiceWorkerServer(app, cacheName, cacheResources) {
      *
      */
     self.addEventListener('fetch', (event) => {
-        event.respondWith(new Response('hello'));
+        const responseOptions = {
+            status: 200,
+            headers: {
+                'Content-Type': 'text/html'
+            }
+        };
+        event.respondWith(new Response('<h1>test</h1>', responseOptions));
+        /*
+        event.respondWith(new Promise((resolve) => {
+            const req = {
+                url: event.request.url,
+                method: event.request.method,
+                socket: {}
+            };
+            const res = {
+                end(body) {
+                    resolve(new Response(body));
+                },
+                setHeader() {
+                }
+            };
+            
+            handleRequest(req, res);
+        }));
+        */
     });
 }
 

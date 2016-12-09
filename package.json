@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "browserify src/server.js -o docs/sw.js"
+    "server": "node src/app.js",
+    "server:debug": "node --inspect --debug-brk src/app.js",
+    "build": "browserify src/server.js -o docs/sw.js",
+    "build:webpack": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +22,9 @@
   "homepage": "https://github.com/kanatapple/koa-service#readme",
   "dependencies": {
     "browserify": "^13.1.1",
+    "json-loader": "^0.5.4",
     "koa": "^1.2.4",
-    "koa-route": "^2.4.2"
+    "koa-route": "^2.4.2",
+    "webpack": "^2.1.0-beta.27"
   }
 }
