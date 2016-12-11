@@ -26,37 +26,40 @@ function setupServiceWorkerServer(app, cacheName, cacheResources) {
         event.waitUntil(self.clients.claim());
     });
     
-    const handleRequest = app.callback();
-    
     /**
      *
      */
     self.addEventListener('fetch', (event) => {
-        const responseOptions = {
-            status: 200,
-            headers: {
-                'Content-Type': 'text/html'
-            }
-        };
-        event.respondWith(new Response('<h1>test</h1>', responseOptions));
-        /*
         event.respondWith(new Promise((resolve) => {
+            /**
+             * IncomingMessage
+             */
             const req = {
                 url: event.request.url,
                 method: event.request.method,
                 socket: {}
             };
+    
+            /**
+             * ServerResponse
+             */
             const res = {
+                _headers: {},
                 end(body) {
-                    resolve(new Response(body));
+                    const options = {
+                        status: this.statusCode || 200,
+                        headers: this._headers
+                    };
+                    resolve(new Response(body, options));
                 },
-                setHeader() {
+                setHeader(name, value) {
+                    this._headers[name] = value;
                 }
             };
-            
+    
+            const handleRequest = app.callback();
             handleRequest(req, res);
         }));
-        */
     });
 }
 
