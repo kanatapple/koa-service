@@ -42146,7 +42146,7 @@ const app = __webpack_require__(78);
 const setupServiceWorkerServer = __webpack_require__(80);
 const cacheName = 'koa-service-v1';
 const cacheResources = [
-    '/'
+    './'
 ];
 
 setupServiceWorkerServer(app, cacheName, cacheResources);
