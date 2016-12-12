@@ -1,7 +1,7 @@
 module.exports = {
     entry: './src/server.js',
     output: {
-        filename: './docs/webpack.sw.js'
+        filename: './docs/sw.js'
     },
     target: 'web',
     node: {

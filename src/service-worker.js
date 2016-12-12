@@ -1,10 +1,10 @@
 'use strict';
 
-const http = require('http');
+const url = require('url');
 
 function setupServiceWorkerServer(app, cacheName, cacheResources) {
     /**
-     *
+     * Install Event
      */
     self.addEventListener('install', (event) => {
         console.log('ServiceWorker installed');
@@ -18,7 +18,7 @@ function setupServiceWorkerServer(app, cacheName, cacheResources) {
     });
     
     /**
-     *
+     * Activate Event
      */
     self.addEventListener('activate', (event) => {
         console.log('ServiceWorker activated');
@@ -30,18 +30,33 @@ function setupServiceWorkerServer(app, cacheName, cacheResources) {
      *
      */
     self.addEventListener('fetch', (event) => {
+        // css request
+        if (/\.css$/.test(event.request.url)) {
+            event.respondWith(caches.match(event.request)
+                                    .then((response) => {
+                                        if (response) {
+                                            return response;
+                                        }
+                                    }));
+            return;
+        }
+    
+        // other request
         event.respondWith(new Promise((resolve) => {
+            const parsedUrl = url.parse(event.request.url);
+            const splitedPath = parsedUrl.pathname.split('/');
+            
             /**
-             * IncomingMessage
+             * Dummy IncomingMessage
              */
             const req = {
-                url: event.request.url,
+                url: `./${splitedPath[splitedPath.length - 1]}`, // Make relative url
                 method: event.request.method,
                 socket: {}
             };
     
             /**
-             * ServerResponse
+             * Dummy ServerResponse
              */
             const res = {
                 _headers: {},
