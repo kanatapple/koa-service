@@ -14493,8 +14493,6 @@ app.use(route.get('./help', function* () {
     this.body = buildHtml('Help Page', './', 'To Index', './about', 'To About');
 }));
 
-// app.listen(3000);
-
 module.exports = app;
 
 /***/ },

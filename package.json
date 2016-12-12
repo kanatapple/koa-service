@@ -1,11 +1,9 @@
 {
   "name": "koa-service",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "KoaJS server to run inside a ServiceWorker",
+  "main": "src/server.js",
   "scripts": {
-    "server": "node src/app.js",
-    "server:debug": "node --inspect --debug-brk src/app.js",
     "build": "webpack --config webpack.config.js"
   },
   "repository": {
@@ -13,7 +11,7 @@
     "url": "git+https://github.com/kanatapple/koa-service.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "kanatapple",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kanatapple/koa-service/issues"
